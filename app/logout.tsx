@@ -30,11 +30,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     );
   }
 
-  const menuItems = [
-    { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard, show: true },
-    { name: 'Control Panel', href: '/control-panel', icon: SlidersHorizontal, show: true },
-    { name: 'Settings ', href: '/settings', icon: Settings, show: true }, // Sirf SuperAdmin ke liye
-  ];
+  // Settings tab sirf SuperAdmin ko dikhega (User aur Manager ke liye hide)
+  // app/layout.tsx (menuItems update)
+const menuItems = [
+  { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard, show: true },
+  { name: 'Control Panel', href: '/control-panel', icon: SlidersHorizontal, show: true },
+  { name: 'Settings (RBAC)', href: '/settings', icon: Settings, show: true }, // Yeh ab sabko nazar aaye ga
+];
 
   return (
     <html lang="en">
@@ -45,7 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <aside className="w-64 bg-slate-900 text-slate-300 flex flex-col justify-between border-r border-slate-800 shadow-xl hidden md:flex">
           
           <div>
-            {/* Top Logo & Top Logout Option */}
+            {/* Top Logo & Top Logout */}
             <div className="p-5 border-b border-slate-800 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-black shadow-md">
@@ -57,7 +59,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </div>
               </div>
               
-              {/* TOP LOGOUT BUTTON */}
               <button
                 onClick={handleLogout}
                 title="Logout"
@@ -98,7 +99,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
             <div>
               <p className="text-xs font-bold text-white leading-none">{role} Account</p>
-              <span className="text-[10px] text-emerald-400 font-medium">● System Online</span>
+              <span className="text-[10px] text-emerald-400 font-medium">● Online</span>
             </div>
           </div>
 
